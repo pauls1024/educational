@@ -1,5 +1,5 @@
-<img src="CDRoundelWithLongText-LtBg.png" alt="Drawing" style="width: 100px;"/>  
-# Banbridge Dojo#
+<img src="CDRoundelWithLongText-LtBg.png" alt="Drawing" style="width: 100px;"/>
+# Banbridge Dojo #
 
 # Physical Computing: #
 ## Connecting a computer to the real world ##
@@ -147,7 +147,7 @@ while True:
 
 GPIO.cleanup()
 ```
-
+<br/><br/>
 **Exercises**
 Can you:
 1) Shutdown the Pi
@@ -162,7 +162,7 @@ Can you:
 
 **3 LED Flashing**
 
-<img src="traffic_light_LEDs_bb.png" alt="Traffic Lights" style="width: 200px;" align="left"/>  
+<img src="traffic_light_LEDs_bb.png" alt="Traffic Lights" style="width: 200px;margin:25px" align="left"/>  
 
 **Exercises** Can you:
 1) Shutdown the Pi
@@ -173,6 +173,7 @@ Can you:
 1) Can you change the code so that the lights go through the traffic light sequence?
 2) Can you change the code so that pressing the button makes the lights pause for 5 seconds?   
 
+<br/><br/>
  ```python
 import RPi.GPIO as GPIO
 import time

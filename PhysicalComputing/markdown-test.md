@@ -1,13 +1,13 @@
-<img src="http://claritytele.com/wp-content/uploads/2015/04/logo.png" alt="Drawing" style="width: 100px;"/>
+<img src="CDRoundelWithLongText-LtBg.png" alt="Drawing" style="width: 100px;"/>  
+# Banbridge Dojo#
 
-# Physical Computing : #
+# Physical Computing: #
 ## Connecting a computer to the real world ##
 
-** Resources: **
-Raspberry Pi (any model),  SD card with Raspbian Jessie, breadboard, Pi leaf pin label, 220 Ohm resistors, Variety of Colours of LED, Variety of coloured link wires with socket to connect to GPIO pin.
+**Resources:** Raspberry Pi (any model),  SD card with Raspbian Jessie, breadboard, Pi leaf pin label, 220 Ohm resistors, Variety of Colours of LED, Variety of coloured link wires with socket to connect to GPIO pin.
 
-** Safety & Warnings **
-We are going to be using electricity and poking about with wires.  The Pi is at greater risk than you are ... if you plug things onto the wrong pins, or touch other parts of the pi with wires you can **kill the Pi**.  Also some of the components eg LED's will be destroyed if too much current flows through them ... please follow the diagrams carefully untill you know what you are doing :-)
+**Safety & Warnings:**
+We are going to be using electricity and poking about with wires.  The Pi is at greater risk than you are ... if you plug things onto the wrong pins, or touch other parts of the pi with wires you can **kill the Pi**.  Also some of the components e.g. LED's will be destroyed if too much current flows through them ... please follow the diagrams carefully until you know what you are doing :-)
 
 ### Introduction ###
 In this series we are going to look at connecting our computer to stuff and then using our programs to react to events and control things.
@@ -94,11 +94,22 @@ Each pin can turn on or off,or go HIGH or LOW in computing terms. When the pin i
 
 <img src="2015-12-22-091539_1280x1024_scrot.png" alt="Scratch Flashing LED" style="width: 200px;"/>
 
+**Exercises**
+Can you change the programme so that:
+1) The light stays on longer than it goes off?
+
 <div class="page-break" />
 
 ### Traffic Lights ###
 
-<img src="traffic_light_LEDs_bb.png" alt="Traffic Lights" style="width: 200px;"/>
+<img src="traffic_light_LEDs_bb.png" alt="Traffic Lights" style="width: 300px;"/>
+
+<img src="2015-12-22-134431_1280x1024_scrot.png" alt="Scratch Flashing LED" style="width: 200px;"/>
+
+**Exercises**
+Can you change the programme so that:
+1) The lights go through the traffic light sequence?
+2) Pressing the button makes the lights pause for 5 seconds?
 
 <div class="page-break" />
 
@@ -110,6 +121,7 @@ Try it and see.
 
 <img src="single_LED_bb.png" alt="Drawing" style="width: 300px;" align="left"/>
 
+**Single LED Flashing**
 ```python
 import RPi.GPIO as GPIO
 import time
@@ -125,3 +137,49 @@ while True:
 
 GPIO.cleanup()
 ```
+
+**Exercises**
+Can you change the programme so that:
+1) The light stays on longer than it goes off?
+
+<div class="page-break" />
+
+**3 LED Flashing**
+
+```python
+import RPi.GPIO as GPIO
+import time
+
+pin4 =4
+pin17 =17
+pin23 =23
+pin25 =25
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(pin4, GPIO.OUT)
+GPIO.setup(pin17, GPIO.OUT)
+GPIO.setup(pin23, GPIO.OUT)
+GPIO.setup(pin25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.add_event_detect(pin25, GPIO.RISING, callback=pressed_callback, bouncetime=200)  # add rising edge detection on a channel
+
+while True:
+    GPIO.output(pin4, GPIO.HIGH)
+    GPIO.output(pin17, GPIO.HIGH)
+    GPIO.output(pin23, GPIO.HIGH)
+    time.sleep(1)
+    GPIO.output(pin4, GPIO.LOW)
+    GPIO.output(pin17, GPIO.LOW)
+    GPIO.output(pin23, GPIO.LOW)
+    time.sleep(1)
+
+def pressed_callback(channel):
+    print('This is a edge event callback function!')
+    print('Edge detected on channel %s'%channel)
+    print('This is run in a different thread to your main program')
+
+GPIO.cleanup()
+```
+
+**Exercises**
+Can you change the programme so that:
+1) The lights go through the traffic light sequence?
+2) Pressing the button makes the lights pause for 5 seconds?

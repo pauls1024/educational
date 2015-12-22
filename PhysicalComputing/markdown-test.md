@@ -91,11 +91,15 @@ Each pin can turn on or off,or go HIGH or LOW in computing terms. When the pin i
 
 <img src="single_LED_bb.png" alt="Drawing" style="width: 300px;"/>
 
-
 <img src="2015-12-22-091539_1280x1024_scrot.png" alt="Scratch Flashing LED" style="width: 200px;"/>
 
 **Exercises**
-Can you change the programme so that:
+Can you:
+1) Shutdown the Pi
+1) Build the circuit shown above connecting the GPIO pins 4,17,23 to the LEDs as shown.
+1) Turn on the Pi and start a Python 2 editor
+2) Type in the code shown below in a python or text editor
+1) What happens when you run the code?
 1) The light stays on longer than it goes off?
 
 <div class="page-break" />
@@ -107,9 +111,15 @@ Can you change the programme so that:
 <img src="2015-12-22-134431_1280x1024_scrot.png" alt="Scratch Flashing LED" style="width: 200px;"/>
 
 **Exercises**
-Can you change the programme so that:
-1) The lights go through the traffic light sequence?
-2) Pressing the button makes the lights pause for 5 seconds?
+Can you
+1) Shutdown the Pi
+1) Build the circuit shown above connecting the GPIO pins 4,17,23 to the LEDs as shown.
+1) Turn on the Pi and start Scratch
+2) Enter the program shown above
+1) What happens when you run the code?
+1) Can you change the code so that the lights go through the traffic light sequence?
+2) Can you change the code so that pressing the button makes the lights pause for 5 seconds?   
+
 
 <div class="page-break" />
 
@@ -139,14 +149,31 @@ GPIO.cleanup()
 ```
 
 **Exercises**
-Can you change the programme so that:
+Can you:
+1) Shutdown the Pi
+1) Build the circuit shown above connecting the GPIO pins 4,17,23 to the LEDs as shown.
+1) Turn on the Pi and start a Python 2 editor
+2) Type in the code shown below in a python or text editor
+1) What happens when you run the code?
 1) The light stays on longer than it goes off?
+
 
 <div class="page-break" />
 
 **3 LED Flashing**
 
-```python
+<img src="traffic_light_LEDs_bb.png" alt="Traffic Lights" style="width: 200px;" align="left"/>  
+
+**Exercises** Can you:
+1) Shutdown the Pi
+1) Build the circuit shown above connecting the GPIO pins 4,17,23 to the LEDs as shown.
+1) Turn on the Pi and start a Python 2 editor
+2) Type in the code shown below in a python or text editor
+1) What happens when you run the code?
+1) Can you change the code so that the lights go through the traffic light sequence?
+2) Can you change the code so that pressing the button makes the lights pause for 5 seconds?   
+
+ ```python
 import RPi.GPIO as GPIO
 import time
 
@@ -172,14 +199,8 @@ while True:
     time.sleep(1)
 
 def pressed_callback(channel):
-    print('This is a edge event callback function!')
-    print('Edge detected on channel %s'%channel)
-    print('This is run in a different thread to your main program')
+    print('A button has been pressed!')
+    print('Edge on channel %s'%channel)
 
 GPIO.cleanup()
-```
-
-**Exercises**
-Can you change the programme so that:
-1) The lights go through the traffic light sequence?
-2) Pressing the button makes the lights pause for 5 seconds?
+```      

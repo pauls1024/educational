@@ -1,13 +1,13 @@
-
-
-
-![mypic](http://claritytele.com/wp-content/uploads/2015/04/logo.png)
+<img src="http://claritytele.com/wp-content/uploads/2015/04/logo.png" alt="Drawing" style="width: 100px;"/>
 
 # Physical Computing : #
 ## Connecting a computer to the real world ##
 
 ** Resources: **
 Raspberry Pi (any model),  SD card with Raspbian Jessie, breadboard, Pi leaf pin label, 220 Ohm resistors, Variety of Colours of LED, Variety of coloured link wires with socket to connect to GPIO pin.
+
+** Safety & Warnings **
+We are going to be using electricity and poking about with wires.  The Pi is at greater risk than you are ... if you plug things onto the wrong pins, or touch other parts of the pi with wires you can **kill the Pi**.  Also some of the components eg LED's will be destroyed if too much current flows through them ... please follow the diagrams carefully untill you know what you are doing :-)
 
 ### Introduction ###
 In this series we are going to look at connecting our computer to stuff and then using our programs to react to events and control things.
@@ -28,6 +28,7 @@ Appendices & Data Sheets
 
 
 <div class="page-break" />
+
 ### The Electrical Circuit ###
 We are going to make a little **light** turn on and off by pressing a **switch**.
 
@@ -53,6 +54,7 @@ Lets use the torch circuit to test the breadboard.  There are lots of wires join
 
 
 <div class="page-break" />
+
 ### Lights and switches ###
 Lets make a new torch circuit using a press switch and LED.
 
@@ -65,19 +67,61 @@ Or, if someone’s trimmed the legs, try finding the flat edge on the LED’s ou
 
 
 <div class="page-break" />
+
 ### Look at a Raspberry Pi ###
 
-|     |   |
-| :------------- | :------------- |
-|![pi versions](Pi_Versions_bb.png)       | Here you can see three versions of the Raspberry Pi.  Each one has a set of metal pins sticking out of the board at the top left of the picture. <br/><br/>The pins are used to send signals to and from the computer.  Many of they can be used for almost anything and controlled by your programmes. So they are called General Purpose Input Output pins, or GPIO for short. <br/><br/>On your Pi there should already be a piece of paper labeling the pins.<br/><br/>Each pin can turn on or off,or go HIGH or LOW in computing terms. When the pin is HIGH it outputs 3.3 volts (3v3); when the pin is LOW it is off    |
 
-![Traffic Lights](single_LED_bb.png)
+ <img src="Pi_Versions_bb.png" alt="Drawing" style="width: 200px;" align="left"/>     
+
+Here you can see three versions of the Raspberry Pi.  Each one has a set of metal pins sticking out of the board at the top left of the picture.
+
+
+The pins are used to send signals to and from the computer.  Many of they can be used for almost anything and controlled by your programmes. So they are called General Purpose Input Output pins, or GPIO for short.
+
+
+On your Pi there should already be a piece of paper labeling the pins.
+
+
+Each pin can turn on or off,or go HIGH or LOW in computing terms. When the pin is HIGH it outputs 3.3 volts (3v3); when the pin is LOW it is off.
+
 
 <div class="page-break" />
+
 ### Scratch Meets the Real World. ###
 
+<img src="single_LED_bb.png" alt="Drawing" style="width: 300px;"/>
 
-![Traffic Lights](traffic_light_LEDs_bb.png)
+
+<img src="2015-12-22-091539_1280x1024_scrot.png" alt="Scratch Flashing LED" style="width: 200px;"/>
 
 <div class="page-break" />
+
+### Traffic Lights ###
+
+<img src="traffic_light_LEDs_bb.png" alt="Traffic Lights" style="width: 200px;"/>
+
+<div class="page-break" />
+
 ### Letting the Python out of its computer ###
+
+Type in the following block of code. What do you think will happen when you run it?
+
+Try it and see.
+
+<img src="single_LED_bb.png" alt="Drawing" style="width: 300px;" align="left"/>
+
+```python
+import RPi.GPIO as GPIO
+import time
+
+pin4 =4
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(pin4, GPIO.OUT)
+while True:
+    GPIO.output(pin4, GPIO.HIGH)
+    time.sleep(1)
+    GPIO.output(pin4, GPIO.LOW)
+    time.sleep(1)
+
+GPIO.cleanup()
+```

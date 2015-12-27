@@ -204,4 +204,21 @@ def pressed_callback(channel):
     print('Edge on channel %s'%channel)
 
 GPIO.cleanup()
-```      
+```     
+
+
+<div class="page-break"></div>
+**Extension Ideas:**
+Making a switch based game or application
+* reaction timer (single player)
+* reaction timer (two player)
+* bendy wire game (novel switch)
+* high score table on bendy wire game (arrays and sorting)
+* burglar alarm (normally open switch, normally closed switch, trip wire triggers, pressure pads)
+* breaking beam triggers (running finish line, burglar alarm ...)
+** measuring **
+* distance (ultrasonic transducer, timer)
+* temerature
+* pulse counter (wind speed, rainfall)
+* humidity (digital serial bus)
+* voltage : ADC  

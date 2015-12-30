@@ -24,3 +24,5 @@ while True:
     time.sleep(1)
 
 GPIO.cleanup()
+
+for

@@ -18,5 +18,5 @@ By creating the Minecraft light & sensor circuit, you will learn:
 
 You can either view this activity as a PDF or via the browser in the Markdown file:
 
-- [Activity PDF - Minecraft](EMinecraftLightsAndSensors.pdf?raw=true)   
+- [Activity PDF - Minecraft](MinecraftLightsAndSensors.pdf?raw=true)   
 - [Activity Markdown file - Minecraft](MinecraftLightsAndSensors.md)    

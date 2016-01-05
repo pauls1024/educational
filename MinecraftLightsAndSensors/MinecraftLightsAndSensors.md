@@ -9,14 +9,17 @@ In the following exercises we are going to look at connecting our computer to si
 ## Resources
 
 You will need the following:
+
 1. Raspberry Pi (any model) running Raspbian Jessie
 1. Breadboard
 1. Pi leaf pin label
 1. 330 Ohm resistor X 4
 1. A LED
 1. A RGB LED
-1. Push Button
+1. Push Button Switch
 1. Male-Female & Male-Male jump leads
+
+<div class="page-break" />
 
 **Safety & Warnings:**
 `We are going to be using electricity and poking about with wires.  The Pi is at greater risk than you are ... if you plug things onto the wrong pins, or touch other parts of the pi with wires you can **kill the Pi**.  Also some of the components e.g. LED's will be destroyed if too much current flows through them ... please follow the diagrams carefully until you know what you are doing :-)`
@@ -36,6 +39,7 @@ If your Pi does not contain labels for the pins, then the fantastic [Pi Leaf](ht
 ### Exercise 1
 
 **Can you:**
+
 1. Shutdown the Pi
 1. Build the circuit shown previously by connecting (this contains a number of steps so take your time to reduce chance of mistakes :D):
     1. One of the GND pins to the **-/negative** rail on the breadboard
@@ -53,9 +57,9 @@ For this worksheet, Python is perfect as it have modules (a bunch of code that c
 ### Exercise 2
 
 1. Start a Python 3 editor. You can do this by either clicking on `Menu > Programming > Python 3 (IDLE)` or by opening a terminal and typing
-```sh
-idle3 &
-```
+  ```sh
+  idle3 &
+  ```
 1. When the Python shell window opens up, click `File > New Window` to open a new window. This is where you'll enter your code.
 1. Save the file as `blinking_led.py`
 1. Enter the following code
@@ -95,9 +99,12 @@ Using `gpiozero` along with the `mc` Minecraft Python API allows us to add some 
 
 The following exercise shows us how to control the LED by standing on a block of Redstone Ore. Get coding :D
 
+![](images/redstone.png)
+
 ### Exercise 3
 
 **Can you:**
+
 1. In the Python shell, click `File > New Window` to open a new window.
 1. Save the file as `minecraft_led.py`
 1. Enter the following code:
@@ -123,7 +130,8 @@ The following exercise shows us how to control the LED by standing on a block of
 1. Save with `Ctrl + S` and run with `F5`.
 
 ### Challenge:
-1. What happens when you run the code?
+
+1. What happens when you run the code? Remember to add some redstone ore blockss so you can stand on them (unless your world already has some just lying around :D)
 1. Change the code to turn the light on and off with the `led.toggle()`. Is it any better than the previous code? Think about whether any lines of code were reduce or whether it makes the code more understandable?
 1. Read about the [Minecraft API](http://www.stuffaboutcode.com/p/minecraft-api-reference.html) and change the block type from Redstone Ore to something else. Remember to save and run your code again after any updates!
 
@@ -146,32 +154,33 @@ So far we've looked at using software to control the physical world. Let's look 
 ### Exercise 4
 
 **Can you:**
+
 1. In the Python shell, click `File > New Window` to open a new window.
 1. Save the file as `minecraft_teleport.py`
 1. Enter the code shown below.
 1. Save with `Ctrl + S` and run with `F5`.
+  ```python
+  from mcpi.minecraft import Minecraft
+  from time import sleep
+  from gpiozero import LED, Button
 
-```python
-from mcpi.minecraft import Minecraft
-from time import sleep
-from gpiozero import LED, Button
+  mc = Minecraft.create()
+  led = LED(18)
+  button = Button(4)
+  start = mc.player.getTilePos()
 
-mc = Minecraft.create()
-led = LED(18)
-button = Button(4)
-start = mc.player.getTilePos()
-
-while True:
-    sleep(0.1)
-    if button.is_pressed:
-        led.on()
-        mc.postToChat("Teleport activated!")
-        sleep(1)
-        mc.player.setPos(start.x, start.y, start.z)
-        led.off()
-```
+  while True:
+      sleep(0.1)
+      if button.is_pressed:
+          led.on()
+          mc.postToChat("Teleport activated!")
+          sleep(1)
+          mc.player.setPos(start.x, start.y, start.z)
+          led.off()
+  ```
 
 ### Challenge:
+
 1. What happens when you run the code and press the button?
 1. Change the code to turn the light on and off with the `led.toggle()`. Is it any better than the previous code? Think about whether any lines of code were reduce or whether it makes the code more understandable?
 1. `Advanced:` Can you add any other cool effects when the button is pressed. How about changing the type of blocks that surround the player so it appears like a transporter beam?
@@ -186,6 +195,8 @@ Lets look at some elements we've not encountered before:
 1. We set a variable `start` to hold the  position that the player started in using `mc.player.getTilePos()`.
 1. in the loop we check if the button has been pressed using `button.is_pressed`. If it is then we turn on the LED but also post a message to the game to indicate teleport has started using `mc.postToChat("Teleport activated")`. We then teleport the player back to their starting position using `mc.player.setPos` and turn off the LED.
 
+<div class="page-break" />
+
 ## Let's add a bit of colour
 
 We've looked at simple LEDs and switches, but now we're going to look at controlling the colour of our RGB LED. A single LED die can only emit monochromatic light which could be one of the three primary colors - red, green and blue, known as RGB. A RGB LED allows us to change the colour emitted by the LED by changing the power of the Red, Green and Blue diodes. In this exercise, we're going to change the colour based on what block we're standing on in Minecraft.
@@ -193,48 +204,49 @@ We've looked at simple LEDs and switches, but now we're going to look at control
 ### Exercise 5
 
 **Can you:**
+
 1. In the Python shell, click `File > New Window` to open a new window.
 1. Save the file as `minecraft_block_lights.py`
 1. Enter the code shown below.
 1. Save with `Ctrl + S` and run with `F5`.
+  ```python
+  from mcpi.minecraft import Minecraft
+  from time import sleep
+  from gpiozero import RGBLED
 
-```python
-from mcpi.minecraft import Minecraft
-from time import sleep
-from gpiozero import RGBLED
+  mc = Minecraft.create()
+  rgbled = RGBLED(23,24,25)
 
-mc = Minecraft.create()
-rgbled = RGBLED(23,24,25)
+  # block
+  grass = 2
+  ice = 9
+  sand = 12
 
-# block
-grass = 2
-ice = 9
-sand = 12
+  # colours
+  green = (0, 1, 0)
+  blue = (0.1, 0.1, 0.1)
+  yellow = (1, 1, 0)
 
-# colours
-green = (0, 1, 0)
-blue = (0.1, 0.1, 0.1)
-yellow = (1, 1, 0)
+  # block: colour
+  colours = {
+      grass: green,
+      ice: blue,
+      sand: yellow,
+      }
 
-# block: colour
-colours = {
-    grass: green,
-    ice: blue,
-    sand: yellow,
-    }
-
-while True:
-    sleep(0.1)
-    p = mc.player.getTilePos()
-    block = mc.getBlock(p.x, p.y-1, p.z)
-    if block in colours:
-        colour = colours[block]
-        rgbled.color = colour
-    else:
-        rgbled.off()
-```
+  while True:
+      sleep(0.1)
+      p = mc.player.getTilePos()
+      block = mc.getBlock(p.x, p.y-1, p.z)
+      if block in colours:
+          colour = colours[block]
+          rgbled.color = colour
+      else:
+          rgbled.off()
+  ```
 
 ### Challenge:
+
 1. What happens when you run the code and move around in Minecraft?
 1. Can you add more block types and colours to the program?
 

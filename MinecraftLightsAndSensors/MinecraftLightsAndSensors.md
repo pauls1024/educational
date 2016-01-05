@@ -57,7 +57,7 @@ For this worksheet, Python is perfect as it have modules (a bunch of code that c
 ### Exercise 2
 
 1. Start a Python 3 editor. You can do this by either clicking on `Menu > Programming > Python 3 (IDLE)` or by opening a terminal and typing
-  ```sh
+  ```
   idle3 &
   ```
 1. When the Python shell window opens up, click `File > New Window` to open a new window. This is where you'll enter your code.

@@ -26,7 +26,7 @@ You will need the following:
 
 ## A Look at Raspberry Pi's GPIO
 
-A Rapsberry Pi has a set of metal pins or holes (in the case of the Pi Zero) sticking out of the board at the top left of the picture. The pins can be used to send signals to and from the computer. Many of they can be used for almost anything and what's amazing is that they can controlled by your programmes. Because they can be used for any purpose, they are called General Purpose Input Output pins, or GPIO for short.
+A Rapsberry Pi has a set of metal pins or holes (in the case of the Pi Zero) sticking out of the board at the top left of the picture. The pins can be used to send signals to and from the computer. Many of the pins can be used for almost anything and what's amazing is that they can be controlled by your programmes. Because they can be used for any purpose, they are called General Purpose Input Output pins, or GPIO for short.
 
 If your Pi does not contain labels for the pins, then the fantastic [Pi Leaf](https://www.raspberrypi.org/blog/raspberry-leaf/) is an easy and **free** aid to help you for this purpose.
 
@@ -77,25 +77,24 @@ For this worksheet, Python is perfect as it have modules (a bunch of code that c
   ```
 1. Save with `Ctrl + S` and run with `F5`.
 
-### Challenge:
-
-1. What happens when you run the code?
-1. Make the light stays on longer than it goes off?
-1. Replace the code to turn the light on and off with the `led.toggle()` remembering you still need to `sleep(1)` to ensure the lights stays on or off for one second.
-1. Replace the entire `while` loop with `led.blink()`
-1. `Advanced:` Try to modify the behavior of `led.blink()` using various arguments as documented [here](http://pythonhosted.org/gpiozero/outputs/#led).
-
 ### How does it work?
 
 1. To interact with the GPIO pins we'll use the `gpiozero` library and the `LED` class which is used to interact with the pin as an LED.
 1. We set pin 18 to operate as a LED with `led = LED(18)`.
 1. in the loop we alternate between setting the LED on using `led.on()` and then waiting for one second before turning the LED off with `led.off()`
 
+### Challenge:
+
+1. Make the light stays on longer than it goes off
+1. Replace the code to turn the light on and off with the `led.toggle()` remembering you still need to `sleep(1)` to ensure the lights stays on or off for one second. `Hint: you should just have two lines inside the while loop`
+1. Replace the entire `while` loop with `led.blink()`
+1. `Advanced:` Try to modify the behavior of `led.blink()` using various arguments as documented [here](http://pythonhosted.org/gpiozero/outputs/#led).
+
 <div class="page-break" />
 
 ## Controlling an LED from Minecraft
 
-Using `gpiozero` along with the `mc` Minecraft Python API allows us to add some pretty cool interactions between our LED and the world within Minecraft.
+Using `gpiozero` along with `mcpi`, a python module that provdies classes and functions to interact with the Minecraft Python API, we can add some pretty cool interactions between our LED and the world within Minecraft.
 
 The following exercise shows us how to control the LED by standing on a block of Redstone Ore. Get coding :D
 
@@ -128,12 +127,7 @@ The following exercise shows us how to control the LED by standing on a block of
           led.off()
   ```
 1. Save with `Ctrl + S` and run with `F5`.
-
-### Challenge:
-
-1. What happens when you run the code? Remember to add some redstone ore blockss so you can stand on them (unless your world already has some just lying around :D)
-1. Change the code to turn the light on and off with the `led.toggle()`. Is it any better than the previous code? Think about whether any lines of code were reduce or whether it makes the code more understandable?
-1. Read about the [Minecraft API](http://www.stuffaboutcode.com/p/minecraft-api-reference.html) and change the block type from Redstone Ore to something else. Remember to save and run your code again after any updates!
+1. Remember to add some redstone ore blocks so you can stand on them (unless your world already has some just lying around :D)
 
 ### How does it work?
 
@@ -147,9 +141,14 @@ The following exercise shows us how to control the LED by standing on a block of
 1. y represents vertical position of the player so we use y-1 to find the block one place beneath the player. The type of block is returned from `mc.getBlock`
 1. Finally we check if that block is redstone ore. If it is then turn the `led.on()`. Otherwise, turn the `led.off()`
 
+### Challenge:
+
+1. Change the code to turn the light on and off with the `led.toggle()`. Is it any better than the previous code? Think about whether any lines of code were reduce or whether it makes the code more understandable?
+1. Read about the [Minecraft API](http://www.stuffaboutcode.com/p/minecraft-api-reference.html) and change the block type from Redstone Ore to something else. Remember to save and run your code again after any updates!
+
 ## Let's add a switch
 
-So far we've looked at using software to control the physical world. Let's look at how we can use a switch to modify behavior within the minecraft world.
+So far we've looked at using software to control the physical world. Let's look at how we can use a switch to modify behavior within the Minecraft world.
 
 ### Exercise 4
 
@@ -179,13 +178,6 @@ So far we've looked at using software to control the physical world. Let's look 
           led.off()
   ```
 
-### Challenge:
-
-1. What happens when you run the code and press the button?
-1. Change the code to turn the light on and off with the `led.toggle()`. Is it any better than the previous code? Think about whether any lines of code were reduce or whether it makes the code more understandable?
-1. `Advanced:` Can you add any other cool effects when the button is pressed. How about changing the type of blocks that surround the player so it appears like a transporter beam?
-1. `Advanced:` Can you make the player jump instead of teleporting?
-
 ### How does it work?
 
 Lets look at some elements we've not encountered before:
@@ -194,6 +186,13 @@ Lets look at some elements we've not encountered before:
 1. We set pin 4 to operate as a button with `button = Button(4)`.
 1. We set a variable `start` to hold the  position that the player started in using `mc.player.getTilePos()`.
 1. in the loop we check if the button has been pressed using `button.is_pressed`. If it is then we turn on the LED but also post a message to the game to indicate teleport has started using `mc.postToChat("Teleport activated")`. We then teleport the player back to their starting position using `mc.player.setPos` and turn off the LED.
+
+### Challenge:
+
+1. What happens when you run the code and press the button?
+1. Change the code to turn the light on and off with the `led.toggle()`. Is it any better than the previous code? Think about whether any lines of code were reduce or whether it makes the code more understandable?
+1. `Advanced:` Can you add any other cool effects when the button is pressed. How about changing the type of blocks that surround the player so it appears like a transporter beam?
+1. `Advanced:` Can you make the player jump instead of teleporting?
 
 <div class="page-break" />
 
@@ -245,11 +244,6 @@ We've looked at simple LEDs and switches, but now we're going to look at control
           rgbled.off()
   ```
 
-### Challenge:
-
-1. What happens when you run the code and move around in Minecraft?
-1. Can you add more block types and colours to the program?
-
 ### How does it work?
 
 Lets look at some elements we've not encountered before:
@@ -261,3 +255,8 @@ Lets look at some elements we've not encountered before:
 1. Next, below the colours, create a dictionary mapping each of the block types to a particular colour. A dictionary is a data type used for storing relations between two objects, like an address book mapping a name to a telephone number. The items in the dictionary are referred to as key-value pairs, so in an address book the name is the "key" and the phone number is the "value". In our case the block type is the "key" and the colour is the "value".
 1. In the `while` loop, we find out the type of block the player is standing on and check if the block is in the dictionary. If it is, then we access the colour and finally set the colour on the LED using `rgbled.color = colour`.
 1. If the block is not in the dictionary then we turn the led off using `rgbled.off()`
+
+### Challenge:
+
+1. Can you add more block types and colours to the program?
+1. Can you add the switch functionality into this program and enhance your program further?

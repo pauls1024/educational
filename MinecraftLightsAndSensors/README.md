@@ -20,3 +20,10 @@ You can either view this activity as a PDF or via the browser in the Markdown fi
 
 - [Activity PDF - Minecraft](MinecraftLightsAndSensors.pdf?raw=true)   
 - [Activity Markdown file - Minecraft](MinecraftLightsAndSensors.md)    
+
+## References
+
+Some of the elements explored in this lesson plan are based on the following resources:
+
+- [Minecraft Teleport from CoderDojo Belfast](https://github.com/coderdojobelfast/pidocs/blob/master/teleport.pdf)
+- [Sense Hat Minecraft Map from the Raspberry Pi foundation](https://www.raspberrypi.org/learning/sense-hat-minecraft-map/)

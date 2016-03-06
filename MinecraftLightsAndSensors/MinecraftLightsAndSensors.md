@@ -34,10 +34,9 @@ If your Pi does not contain labels for the pins, then the fantastic [Pi Leaf](ht
 
 ## Circuit
 
-![](images/minecraft_teleport_bb.png)
+![](images/minecraft_light_and_sensors_bb.png)
 
 ### Exercise 1
-
 **Can you:**
 
 1. Shutdown the Pi
@@ -45,7 +44,6 @@ If your Pi does not contain labels for the pins, then the fantastic [Pi Leaf](ht
     1. One of the GND pins to the **-/negative** rail on the breadboard
     1. **GPIO pin 4** to the **push button switch** (it doesn't matter which side) and the other leg of the pin to the **-/negative** rail on the breadboard.
     1. **GPIO pin 18** to the 330 ohm resistor which is connected to the positive leg of the **LED**. The positive leg is the longer one (the negative leg is also the one on the same side as the flat end of the LED) and the negative leg back to the **-/negative** rail on the breadboard.
-    1. **GPIO pins 23, 24 & 25** connected to the 330 ohm resistors connected to the **R, G, & B** legs of the **RGB LED**. The **earth** leg of the LED is the longest leg and it should be connected to the **-/negative** rail on the breadboard. The **R** leg is the one to left of the longest leg, then the **G & B** are the two on the other side.
 1. Turn on the Pi
 
 ## Let's get started with Python
@@ -55,7 +53,6 @@ If your Pi does not contain labels for the pins, then the fantastic [Pi Leaf](ht
 For this worksheet, Python is perfect as it have modules (a bunch of code that contains useful functions we can use in our own program) that have been built that allow us interact with both Minecraft and GPIO. We'll take a look at them some more as we dive into the exercises.
 
 ### Exercise 2
-
 1. Start a Python 3 editor. You can do this by either clicking on `Menu > Programming > Python 3 (IDLE)` or by opening a terminal and typing
   ```
   idle3 &
@@ -101,7 +98,6 @@ The following exercise shows us how to control the LED by standing on a block of
 ![](images/redstone.png)
 
 ### Exercise 3
-
 **Can you:**
 
 1. In the Python shell, click `File > New Window` to open a new window.
@@ -151,7 +147,6 @@ The following exercise shows us how to control the LED by standing on a block of
 So far we've looked at using software to control the physical world. Let's look at how we can use a switch to modify behavior within the Minecraft world.
 
 ### Exercise 4
-
 **Can you:**
 
 1. In the Python shell, click `File > New Window` to open a new window.
@@ -196,14 +191,30 @@ Lets look at some elements we've not encountered before:
 
 <div class="page-break" />
 
-## Let's add a bit of colour
+## Let's add a bit of colour - Advanced Exercises
 
 We've looked at simple LEDs and switches, but now we're going to look at controlling the colour of our RGB LED. A single LED die can only emit monochromatic light which could be one of the three primary colors - red, green and blue, known as RGB. A RGB LED allows us to change the colour emitted by the LED by changing the power of the Red, Green and Blue diodes. In this exercise, we're going to change the colour based on what block we're standing on in Minecraft.
 
-### Exercise 5
+To do this exercise, we need to build a new circuit. **Note:** If you've already built the circuit in **Exercise 1** you don't need to dismantle it for this exercise.
 
+## Circuit
+
+![](images/minecraft_coloured_lights_bb.png)
+
+<div class="page-break" />
+
+### Exercise 5
 **Can you:**
 
+1. Shutdown the Pi
+1. Build the circuit shown previously by connecting (this contains a number of steps so take your time to reduce chance of mistakes :D):
+    1. One of the GND pins to the **-/negative** rail on the breadboard
+    1. **GPIO pins 23, 24 & 25** connected to the **330 ohm resistors** connected to the **R, G, & B legs** of the RGB LED. The earth leg of the LED is the longest leg and it should be connected to the -/negative rail on the breadboard. The **R** leg is the one to left of the longest leg, then the **G** & **B** are the two on the other side.
+1. Turn on the Pi
+1. Start a Python 3 editor. You can do this by either clicking on `Menu > Programming > Python 3 (IDLE)` or by opening a terminal and typing
+  ```
+  idle3 &
+  ```
 1. In the Python shell, click `File > New Window` to open a new window.
 1. Save the file as `minecraft_block_lights.py`
 1. Enter the code shown below.
